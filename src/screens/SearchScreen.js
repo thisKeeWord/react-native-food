@@ -1,30 +1,12 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Button, FlatList, Text } from 'react-native'
+import ResultsList from '../components/ResultsList'
 import SearchBar from '../components/SearchBar'
-import yelp from '../api/yelp'
+import useResults from '../hooks/useResults'
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('')
-  const [results, setResults] = useState([])
-  const [error, setError] = useState('')
-
-  const searchApi = async () => {
-    error && setError('')
-
-    try {
-      const response = await yelp.get('/search', {
-        params: {
-          limit: 50,
-          term,
-          location: 'los angeles'
-        }
-      })
-
-      setResults(response.data.businesses)
-    } catch (error) {
-      setError('An error occurred. Please try again later.')
-    }
-  }
+  const [searchApi, results, error] = useResults()
 
 
   return (
@@ -37,8 +19,10 @@ const SearchScreen = () => {
       {error ? (
         <Text style={styles.errorStyle}>{error}</Text>
       ) : null}
-      <Text>Search Screen</Text>
       <Text>We have found {results.length} results</Text>
+      <ResultsList title="Cost Effective" />
+      <ResultsList title="Bit Pricier" />
+      <ResultsList title="Big Spender" />
     </View>
   )
 }
