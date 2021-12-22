@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { StyleSheet, View, Button, FlatList, Text, TextInput } from 'react-native'
+import React from 'react'
+import { StyleSheet, View, TextInput } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 
