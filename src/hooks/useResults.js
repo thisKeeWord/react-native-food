@@ -5,7 +5,7 @@ export default () => {
   const [results, setResults] = useState([])
   const [error, setError] = useState('')
 
-  const searchApi = async () => {
+  const searchApi = async (term) => {
     error && setError('')
 
     try {
